@@ -1,0 +1,11 @@
+#!/bin/sh
+
+echo "What is your name ? "
+read my_name
+
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+echo "Hello ${RED}${my_name}${NC}"
+
+sleep 3
+echo "Hello world !"
