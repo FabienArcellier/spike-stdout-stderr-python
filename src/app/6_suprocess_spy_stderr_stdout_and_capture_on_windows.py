@@ -16,12 +16,16 @@ class capture_output:
 
     def _run_capture(self):
         if self.capture_stream is not None:
-            while self.subprocess.poll() is None:
+            while True:
                 line = self.capture_stream.readline().decode('utf-8')
+
                 if line != '':
                     self.output_stream.write(line)
                     self.output_stream.flush()
                     self.capture_logs.append(line)
+
+                if self.subprocess.poll() is not None:
+                    break
 
     def output(self):
         self.thread.join()
